@@ -128,4 +128,10 @@ UPDATE products SET is_sale = true WHERE inventory = 0 RETURNING *;
 
 ### Object Relational Mapper(ORM)
 
-There are couple of different ways when interacting with the database
+There are couple of different ways when interacting with the database. One is direct running SQL commands in the code and other way is using what's referred to as object relational mapper or an ORM. It's a layer of abstraction that sits between the database and our fastapi application so we never actually talk directly with db anyone, we talk to the ORM and then it'll talk to our DB. Some of the benefits are we don't actually work with SQL anymore. So instead of using raw SQL, we'll actually use standard python code calling various functions and methods that alternately translate into SQL themselves. 
+
+So instead of manually defining tables in postgres, we can define our tables as python models
+
+SQLalchemy is one of the most popular python ORMs
+
+`pip install sqlalchemy==1.4.23`
