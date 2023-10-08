@@ -4,7 +4,7 @@ Python </br>
 FastAPI framework</br>
 Postgres</br>
 SQL Alchemy</br>
-
+Alembic </br>
 
 Social media type application where users can create posts, they can read other people's posts, they'll be able to perform all the CRUD operations. And we'll also be able to vote(or like) on posts. 
 
@@ -135,3 +135,37 @@ So instead of manually defining tables in postgres, we can define our tables as 
 SQLalchemy is one of the most popular python ORMs
 
 `pip install sqlalchemy==1.4.23`
+
+
+For storing password in db, we need to hash it, so in [fastapi documentation](https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/#:~:text=PassLib%20is%20a%20great%20Python%20package%20to%20handle%20password%20hashes.) we can use `passlib` package to handle passwords
+
+`pip install "passlib[bcrypt]"`
+
+### Authentication
+
+When working with authentication on an API, or any application, there's really two main ways to tackle authentication
+
+1. Session based authentication - idea is a session is that we store something on our backend server or API in this case, to track whether a user is logged in. So there is some piece of information, whether we store in the db or memory that's going to keep track of if the user is logged in and when user logs out
+
+2. Using JWT token based authentication. It's stateless, meaning there's nothing on our backend, there's nothing on our API, there's nothing in out db that actually keps track or stores some sort of information about whether a user is logged in or logged out. It's actually stored on the frontend of our clients, actually keeps track of whether a user is logged in or not
+
+
+For JWT, `pip install "python-jose[cryptography]"`
+
+To get secret_key `openssl rand -hex 32`
+
+To add new columns to db, right now it's not possible with sqlalchemy. We can use Alembic, Alembic provides for the creation, management, and invocation of change management scripts for a relational database, using SQLAlchemy as the underlying engine.
+
+`pip install alembic`
+
+`alembic init alembic`
+
+`alembic revision -m "create posts table"`
+
+`alembic current`
+
+`alembic upgrade 23841ecc28ec`
+
+To upgrade/create tables automatically based on the models we have - `alembic revision --autogenerate -m "auto-vote"`
+
+
