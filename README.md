@@ -168,4 +168,22 @@ To add new columns to db, right now it's not possible with sqlalchemy. We can us
 
 To upgrade/create tables automatically based on the models we have - `alembic revision --autogenerate -m "auto-vote"`
 
+### CORS Policy
+
+If we try to do `fetch('http://localhost:8000').then(res => res.json()).then(console.log)` from google developers console. we'll get 
+
+```
+Access to fetch at 'http://localhost:8000/' from origin 'https://www.google.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled
+
+```
+
+But if we just do `http://localhost:8000/` from postman we get a reponse, and we are not getting any output from web browser so it has to do something with CORS policy
+
+CORS - Cross Origin Resource Sharing - it allows us to make requests from a web browser on one domain to a server on a different domain
+
+By default our API will only  allow web browsers running on the same domain as our server to make request to it.
+
+
+
+
 
