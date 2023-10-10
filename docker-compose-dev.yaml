@@ -1,0 +1,29 @@
+version: "3"
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    # command: alembic upgrade head
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - 8000:8000
+    volumes:
+      - ./:/usr/src/app:ro
+    env_file:
+      - ./.env
+
+  postgres:
+    image: postgres:13.12
+    environment:
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=ms-fastapi
+    ports:
+      - 5433:5432
+    volumes:
+      - /opt/postgres-db:/var/lib/postgresql/data
+
+volumes:
+  postgres-db:
