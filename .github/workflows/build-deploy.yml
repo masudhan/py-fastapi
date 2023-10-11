@@ -72,7 +72,8 @@ jobs:
             port: ${{ secrets.PORT }}
             script: |
                 cd app/src
-                git pull
+                pwd
+                git pull origin master
                 echo ${{ secrets.PASSWORD }} | sudo -S systemctl restart gunicorn.service
           
 
