@@ -63,16 +63,24 @@ jobs:
     environment:
         name: production
     steps:
-        - name: Deployment to ubuntu
-          uses: appleboy/ssh-action@master
+        # - name: Deployment to ubuntu
+        #   uses: appleboy/ssh-action@master
+        #   with:
+        #     host: ${{ secrets.PROD_HOST }}
+        #     username: ${{ secrets.PROD_USERNAME }}
+        #     password: ${{ secrets.PROD_PASSWORD }}
+        #     script: |
+        #         cd app/src
+        #         pwd
+        #         git pull origin master
+        #         echo ${{ secrets.PASSWORD }} | sudo -S systemctl restart gunicorn.service
+
+        - name: executing remote ssh commands using ssh key
+          uses: appleboy/ssh-action@v1.0.0
           with:
-            host: ${{ secrets.PROD_HOST }}
-            username: ${{ secrets.PROD_USERNAME }}
-            password: ${{ secrets.PROD_PASSWORD }}
-            script: |
-                cd app/src
-                pwd
-                git pull origin master
-                echo ${{ secrets.PASSWORD }} | sudo -S systemctl restart gunicorn.service
+              host: ${{ secrets.PROD_HOST }}
+              username: ${{ secrets.PROD_USERNAME }}
+              key: ${{ secrets.KEY }}
+              script: whoami
           
 
