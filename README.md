@@ -185,5 +185,7 @@ By default our API will only  allow web browsers running on the same domain as o
 
 
 
+### CICD
 
+https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 

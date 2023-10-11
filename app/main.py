@@ -4,11 +4,14 @@ from . import models
 from .config import settings
 from .routers import post, user, auth, vote
 from fastapi.middleware.cors import CORSMiddleware 
+from alembic import command
 
 # this will tell sqlalchemy to run the create statements
 # models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+# command.upgrade("head")
 
 origins = ['*']
 
